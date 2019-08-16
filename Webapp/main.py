@@ -215,6 +215,81 @@ def registration_complete_voter_overseas():
     else:
         return flask.render_template("permission_denied_overseas.html")
 
+        
+@app.route("/cast_vote_overseas")
+def cast_vote_overseas():
+  mapping={
+    "001":"Bangalore",
+    "002":"Delhi",
+    "003":"Chennai",
+    "004": "Mumbai",
+    "005":"Kolkata",
+    "006":"Hyderabad"
+  }
+  global session
+  print(session)
+  # import pdb; pdb.set_trace()
+  cap = cv2.VideoCapture(0)
+  obj=Voting()
+  import time
+  while True:
+    time.sleep(3)
+    ret, frame = cap.read()
+    cv2.imwrite("img.jpg",frame)
+    if obj.check_emotion():
+      myclient=pymongo.MongoClient(uri)
+      mydb = myclient["codefundo"]
+      mycol=mydb['cand_reg']
+      result=[]
+      obj=NewsSearch()
+      for x in mycol.find():
+        result.append(x)
+      news=[]
+      # import pdb; pdb.set_trace()
+      for res in result:
+        news.append(obj.news_candidate(str(res["First Name"]+" "+res['Last Name']+" india election")))
+      # import pdb; pdb.set_trace()
+      return flask.render_template("cast_vote_overseas.html",result=result,news=news,mapping=mapping)
+    else:
+        return flask.render_template("permission_denied_emotion.html")
+    break
+@app.route("/cast_vote_oldage")
+def cast_vote_oldage():
+  mapping={
+    "001":"Bangalore",
+    "002":"Delhi",
+    "003":"Chennai",
+    "004": "Mumbai",
+    "005":"Kolkata",
+    "006":"Hyderabad"
+  }
+  global session
+  print(session)
+  # import pdb; pdb.set_trace()
+  cap = cv2.VideoCapture(0)
+  obj=Voting()
+  import time
+  while True:
+    time.sleep(3)
+    ret, frame = cap.read()
+    cv2.imwrite("img.jpg",frame)
+    if obj.check_emotion():
+      myclient=pymongo.MongoClient(uri)
+      mydb = myclient["codefundo"]
+      mycol=mydb['cand_reg']
+      result=[]
+      obj=NewsSearch()
+      for x in mycol.find():
+        result.append(x)
+      news=[]
+      # import pdb; pdb.set_trace()
+      for res in result:
+        news.append(obj.news_candidate(str(res["First Name"]+" "+res['Last Name']+" india election")))
+      # import pdb; pdb.set_trace()
+      return flask.render_template("cast_vote_oldage.html",result=result,news=news,mapping=mapping)
+    else:
+        return flask.render_template("permission_denied_emotion.html")
+    break
 @app.route("/cast_vote_home")
 def cast_vote_home():
   mapping={
@@ -254,16 +329,7 @@ def cast_vote_home():
     break
 
 
-# @app.route("/cast_vote")
-# def cast_vote():
-#   myclient=pymongo.MongoClient(uri)
-#   mydb = myclient["codefundo"]
-#   mycol=mydb['cand_reg']
-#   result=[]
-#   for x in mycol.find():
-#     result.append(x)
-#   # import pdb; pdb.set_trace()
-#   return flask.render_template("cast_vote.html",result=result)
+
 
 
 @app.route("/voted",methods = ['POST', 'GET'])
@@ -563,6 +629,7 @@ def shobhit1():
   return 'hello'
 
 
+
 @app.route("/ext")
 def ext():    
   # print(data['id_token'])
@@ -575,4 +642,4 @@ def ext1():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+  app.run(debug=True)
