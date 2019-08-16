@@ -78,7 +78,13 @@ def candidate_fun():
   mycol=mydb['cand_reg']
   result=[]
   for x in mycol.find():
-    result.append(x)
+    obj=NewsSearch()
+    # import pdb; pdb.set_trace()
+    t=dict(x)
+    t['a'],t['b'],t['c']=obj.news_candidate(search_term=str(x["First Name"].lower()+" "+x["Last Name"].lower()+ " election"))
+    # t['News']=str(a+".  "+b+". "+c)
+    result.append(t)
+    # result.append({'News':obj.news_candidate(search_term=str(result["First Name"]+" "+result["Last Name"]+" election"))})
   return flask.render_template("candidate.html",result=result,mapping=mapping)
  
 @app.route("/admin_home")

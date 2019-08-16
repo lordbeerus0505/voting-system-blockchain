@@ -39,7 +39,7 @@ class NewsSearch:
         #import pdb;pdb.set_trace()
         client = NewsSearchAPI(CognitiveServicesCredentials(subscription_key))
 
-        news_result = client.news.search(query=search_term, market="en-us", count=6)
+        news_result = client.news.search(query=search_term, market="en-us", count=3)
         # import pdb; pdb.set_trace()
         if news_result.value:
             print("Total estimated matches value: {}".format(
@@ -47,7 +47,6 @@ class NewsSearch:
             print("News result count: {}".format(len(news_result.value)).encode("utf-8"))
             result=[]
             for first_news_result in news_result.value:        
-                subresult = []
                 if len(first_news_result.name)>120:
                     a=first_news_result.name[:120]+"..."
                 else:
@@ -60,8 +59,9 @@ class NewsSearch:
                 # print("Published time: {}".format(first_news_result.date_published).encode("utf-8"))
                 # print("News provider: {}".format(first_news_result.provider[0].name).encode("utf-8"))
                 # print('\n\n\n\n')
-            return result
+            return result[0],result[1],result[2]
         else:
             print("Didn't see any news result data..")
+            return ['No news found...']
 # obj=NewsSearch()
 # print(obj.news())
