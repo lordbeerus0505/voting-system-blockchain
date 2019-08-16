@@ -198,18 +198,18 @@
               <div class="card">
                 <div class="card-body">
                   <div class="clearfix">
-                    <h4 class="card-title float-left">Visit And Sales Statistics</h4>
+                    <h4 class="card-title float-left">Vote Count</h4>
                     <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
                   </div>
                   <!-- <canvas id="visit-sale-chart" class="mt-4"></canvas> -->
-                  <canvas id="visit-sale-chart"></canvas>
+                  <canvas id="events-chart"></canvas>
                 </div>
               </div>
             </div>
             <div class="col-md-5 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Traffic Sources</h4>
+                  <h4 class="card-title">Genderwise Voting Statistics</h4>
                   <canvas id="traffic-chart"></canvas>
                   <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
                 </div>
@@ -217,7 +217,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-8 grid-margin stretch-card">
+            <div class="col-7 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Recent Updates</h4>
@@ -244,14 +244,33 @@
                     </div>
               </div>
             </div>
+
           </div>
         </div>
+          <div class="col-5 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Women Candidates</h4>
+                  <div class="carousel-item active">
+                    <img src="../static/images/female-candidates.png" class="mw-100 w-100 rounded" alt="image">
+                </div>
+
+              </div>
+            </div>
+
           <!-- Button trigger modal -->
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
       </div>
+
       <!-- content-wrapper ends -->
     </div>
+    <footer class="footer" style="background: lavenderblush">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="https://www.bootstrapdash.com/" target="_blank">RVCE</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">RVCE <i class="mdi mdi-copyright text-danger"></i></span>
+          </div>
+        </footer>
     </div>
   </div>
     <!-- page-body-wrapper ends -->
@@ -265,6 +284,7 @@
   <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/off-canvas.js"></script>
   <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/misc.js"></script>
    <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/dashboard.js"></script>
+  <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/chart.js"></script>
 <script>  // When the user scrolls the page, execute myFunction
 window.onscroll = function() {myFunction()};
 
