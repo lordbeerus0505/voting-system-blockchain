@@ -14,6 +14,81 @@
         <!-- endinject -->
         <link rel="shortcut icon" href="../static/PurpleAdmin-Free-Admin-Template-master/images/favicon.png" />
         <style>
+            /* The container */
+            .container {
+              display: block;
+              position: relative;
+              padding-left: 0px;
+              margin-bottom: 12px;
+              cursor: pointer;
+              font-size: 22px;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+            
+            /* Hide the browser's default checkbox */
+            .container input {
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+              height: 0;
+              width: 0;
+            }
+            
+            /* Create a custom checkbox */
+            .checkmark {
+              position: absolute;
+              top: 0;
+              right: 50px;
+              height: 25px;
+              width: 45px;
+              background-color: #2196F3;
+              border-radius: 15%;
+            }
+            
+            /* On mouse-over, add a grey background color */
+            .container:hover input ~ .checkmark {
+              background-color: rgb(19, 255, 78);
+            }
+            
+            /* When the checkbox is checked, add a blue background */
+            .container input:checked ~ .checkmark {
+              background-color: #ff0707;
+            }
+            
+            /* Create the checkmark/indicator (hidden when not checked) */
+            .checkmark:after {
+              content: "";
+              position: absolute;
+              display: none;
+            }
+            
+            /* Show the checkmark when checked */
+            .container input:checked ~ .checkmark:after {
+              display: block;
+            }
+            
+            /* Style the checkmark/indicator */
+            .container .checkmark:after {
+              top: 8px;
+              left: 17px;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: white;
+            }
+            .vl {
+              border-left: 1px solid black;
+              height: 10px;
+              position: absolute;
+              left: 5%;
+              margin-left: -3px;
+              top: 0;
+            }
+            </style>
+        <style>
                 div.gallery {
                   border: 1px solid #ccc;
                 }
@@ -258,13 +333,25 @@
                               </div>
                 </div>
             </div>
-                                <label>
-                                        <select name="vote">
-                                                {% for key in result %}
-                                                    <option value="{{ key['UID'] }}">{{ key['UID'] }} - {{key['First Name']}} {{key['Last Name']}}</option>
-                                                {% endfor %}
-                                              </select>
-                                </label>
+            <div class="col-9 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Cast your vote</h4>
+                    
+                      <hr>
+                        {% for key in result %}
+                        {% set link = ["../static/images/", key['UID'],'.jpg']|join('') %}
+                        <label class="container">{{ key['UID'] }} - {{key['First Name']}} {{key['Last Name']}}
+                            <a target="_blank" href="{{link}}"></a>
+                            <input type="radio" name="vote" value="{{ key['UID'] }}">
+                            <span class="checkmark"></span>
+                          </label>
+                        <hr>
+                        {% endfor %}
+                        
+                      </div>
+                    </div>
+                  </div>
                                 <button class="file-upload-browse btn btn-gradient-primary" type="submit" name="Cast Vote" >Cast Vote</button>
                             </form>
                             <!-- <div class="responsive">
