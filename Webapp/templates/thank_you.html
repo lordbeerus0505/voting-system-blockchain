@@ -159,7 +159,7 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="../static/PurpleAdmin-Free-Admin-Template-master/images/abhiramImage.jpg" alt="profile">
+                  <img src="../static/images/abhiramImage.jpg" alt="profile">
                   <span class="login-status online"></span> <!--change to offline or busy as needed-->
                 </div>
                 
@@ -226,7 +226,7 @@
                             <h4>Resize the browser window to see the effect.</h4> -->
                             You have voted for :<br/>
                             
-                                {% set link = ["../static/PurpleAdmin-Free-Admin-Template-master/images/", result['UID'],'.jpg']|join('') %}
+                                {% set link = ["../static/images/", result['UID'],'.jpg']|join('') %}
                                 <div class="responsive">
                                         <div class="gallery">
                                             <a target="_blank" href="{{link}}"><!--On click it could be something more sensible-->

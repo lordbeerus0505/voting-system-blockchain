@@ -20,7 +20,7 @@ currentuserid=-1
 # sys.path.append('D:\EmotionDetection')
 # print(sys.path)
 # from Mails import Mail
-uri = "mongodb://votemadolai:RIAaSAOPHxWkFP4tfmgA0R9vz31GWMSS2Pz3S4WkwZyVAQa5gfocwAxhDijFz3g0X0EIyd0gCjcncdo8d8HsUA==@votemadolai.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
+uri = "mongodb://codefundocosmos:UWXagx9GOSlg84Z3XqB2k1vTbIqtncuTrfr9WV6jMqH8GrL9TsFyiWBWbv6i1wvHlhyPGjzmtZ0cPjewox3aEA==@codefundocosmos.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
 app = flask.Flask(__name__,static_url_path='/static')
 fd = open("config.txt")
 data = json.load(fd)
@@ -84,8 +84,10 @@ def candidate_fun():
     t['a'],t['b'],t['c']=obj.news_candidate(search_term=str(x["First Name"].lower()+" "+x["Last Name"].lower()+ " election"))
     # t['News']=str(a+".  "+b+". "+c)
     result.append(t)
+  obj=NewsSearch()
+  criminal=obj.news_candidate("dawood ibrahim criminal records")
     # result.append({'News':obj.news_candidate(search_term=str(result["First Name"]+" "+result["Last Name"]+" election"))})
-  return flask.render_template("candidate.html",result=result,mapping=mapping)
+  return flask.render_template("candidate.html",result=result,mapping=mapping,criminal=criminal)
  
 @app.route("/admin_home")
 def admin_home():
@@ -148,7 +150,7 @@ def registration_complete_candidate():
           fil=open("uid.txt","w")
           fil.write(result['uid'])
           fil.close()
-          return flask.render_template("registration_complete.html",result=result,mapping=mapping,photo="../static/PurpleAdmin-Free-Admin-Template-master/images/"+file_handler.filename,visa=None,candidate=result['uid'])
+          return flask.render_template("registration_complete.html",result=result,mapping=mapping,photo="../static/images/"+file_handler.filename,visa=None,candidate=result['uid'])
       else:
         return flask.render_template("permission_denied_voter.html")
 @app.route("/registration_complete_voter",methods = ['POST', 'GET'])
@@ -159,6 +161,7 @@ def registration_complete_voter():
         "lname": "Last Name",
         "email": "Email ID",
         "age":"Age",
+        "sick":"Sick",
         "address":"Permanent Address",
         "gender":"Gender",
         "wardno": "Ward No",
@@ -170,14 +173,19 @@ def registration_complete_voter():
       file_handler=request.files['photo']
       #file_handler.save(os.path.join("D:\codefundo\Webapp\static\PurpleAdmin-Free-Admin-Template-master\images",secure_filename(file_handler.filename)))
       file_handler.save(os.path.join(data["ImgPath"],secure_filename(result['uid']+".jpg")))
-
+      # import pdb; pdb.set_trace()
+      
+      if int(result['age'])>60 and result['sick']=='Yes':
+        #vote from home
+        from sendgrid_email import Email
+        obj=Email()
+        obj.send(result['email'],"http://localhost:5000/cast_vote_oldage")
       obj=Voting()
-
       print(result['uid'],result['fname'],result['lname'],result['age'],
           result['address'],str(file_handler.filename))
       if obj.register_voter(result['uid'],result['fname'],result['lname'],result['age'],
           result['address'],result['gender'],result['wardno'],str(file_handler.filename)) ==True:
-            return flask.render_template("registration_complete.html",result=result,mapping=mapping,photo="../static/PurpleAdmin-Free-Admin-Template-master/images/"+file_handler.filename,visa=None,candidate=None)
+            return flask.render_template("registration_complete.html",result=result,mapping=mapping,photo="../static/images/"+file_handler.filename,visa=None,candidate=None)
       else:
           return flask.render_template("permission_denied_voter.html")
 
@@ -190,6 +198,7 @@ def registration_complete_voter_overseas():
         "lname": "Last Name",
         "email": "Email ID",
         "age":"Age",
+        "sick":"Sick",
         "address":"Permanent Address",
         "gender":"Gender",
         "wardno": "Ward No",
@@ -200,6 +209,9 @@ def registration_complete_voter_overseas():
     if request.method=="POST":
       result=request.form
       file_handler=request.files['photo']
+      from sendgrid_email import Email
+      obj=Email()
+      obj.send(result['email'],"http://localhost:5000/cast_vote_overseas")
       #file_handler.save(os.path.join("D:\codefundo\Webapp\static\PurpleAdmin-Free-Admin-Template-master\images",secure_filename(file_handler.filename)))
       file_handler.save(os.path.join(data["ImgPath"], secure_filename(result['uid']+".jpg")))
       fh=file_handler
@@ -211,7 +223,7 @@ def registration_complete_voter_overseas():
           result['address'],str(file_handler.filename))
       if obj.register_voter_overseas(result['uid'],result['fname'],result['lname'],result['age'],
           result['address'],result['gender'],result['wardno'],str(fh.filename),str(result['uid']+"_visa.jpg")) ==True:
-            return flask.render_template("registration_complete.html",result=result,mapping=mapping,photo="../static/PurpleAdmin-Free-Admin-Template-master/images/"+str(result['uid']+".jpg"),visa="../static/PurpleAdmin-Free-Admin-Template-master/images/"+str(result['uid'])+"_visa.jpg",candidate=None)
+            return flask.render_template("registration_complete.html",result=result,mapping=mapping,photo="../static/images/"+str(result['uid']+".jpg"),visa="../static/images/"+str(result['uid'])+"_visa.jpg",candidate=None)
     else:
         return flask.render_template("permission_denied_overseas.html")
 
@@ -571,7 +583,7 @@ def register_msft():
   if usertype=='user':
       usertype1=getyourroleid()
       if usertype1=='voter':
-          return flask.render_template("cast_vote.html")
+          return flask.render_template("home.html")
       else:
           return render_template('home.html')
   else:

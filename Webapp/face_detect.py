@@ -11,7 +11,7 @@ import os
 class Face_Detector:
     def detect(self,path):
         # Replace <Subscription Key`> with your valid subscription key.
-        subscription_key = "2f562fb2571f4be1b0bd1911b33028f1" #DSFace API
+        subscription_key = "250e2655ae5b4c2fbf5a649e0cae99aa" #DSFace API
 
         # Set image path from local file.
         image_path = path#os.path.join('D:\\codefundo\\Webapp\\visaSample1.jpg')

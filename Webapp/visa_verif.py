@@ -5,7 +5,7 @@ import requests
 from datetime import date
 import re
 # Replace <Subscription Key> with your valid subscription key.
-subscription_key = "41f761321d1b4e36831042fb063910cd"
+subscription_key = "4840126270094302a61a383fe2bbdb69"
 assert subscription_key
 
 # You must use the same region in your REST call as you used to get your

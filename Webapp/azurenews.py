@@ -4,7 +4,7 @@
 '''
 from azure.cognitiveservices.search.newssearch import NewsSearchAPI
 from msrest.authentication import CognitiveServicesCredentials
-subscription_key = "730223159060415484ac311dbfe15bed"
+subscription_key = "9ac723e040fd473f95ab23183af9021d"
 
 
 class NewsSearch:
@@ -45,7 +45,7 @@ class NewsSearch:
             print("Total estimated matches value: {}".format(
                     news_result.total_estimated_matches))
             print("News result count: {}".format(len(news_result.value)).encode("utf-8"))
-            result=[]
+            result=['No more news...','No more news...','No more news...']
             for first_news_result in news_result.value:        
                 if len(first_news_result.name)>120:
                     a=first_news_result.name[:120]+"..."
@@ -59,9 +59,11 @@ class NewsSearch:
                 # print("Published time: {}".format(first_news_result.date_published).encode("utf-8"))
                 # print("News provider: {}".format(first_news_result.provider[0].name).encode("utf-8"))
                 # print('\n\n\n\n')
+            # import pdb; pdb.set_trace()
             return result[0],result[1],result[2]
         else:
             print("Didn't see any news result data..")
             return ['No news found...']
+    
 # obj=NewsSearch()
-# print(obj.news())
+# print(obj.news("dawood ibrahim criminal records"))

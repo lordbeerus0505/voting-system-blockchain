@@ -77,7 +77,7 @@ class Voting:
         # mydb = myclient["codefundo"]
 
 
-        uri = "mongodb://votemadolai:RIAaSAOPHxWkFP4tfmgA0R9vz31GWMSS2Pz3S4WkwZyVAQa5gfocwAxhDijFz3g0X0EIyd0gCjcncdo8d8HsUA==@votemadolai.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
+        uri = "mongodb://codefundocosmos:UWXagx9GOSlg84Z3XqB2k1vTbIqtncuTrfr9WV6jMqH8GrL9TsFyiWBWbv6i1wvHlhyPGjzmtZ0cPjewox3aEA==@codefundocosmos.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
         myclient = pymongo.MongoClient(uri)
         mydb=myclient.codefundo
         # import pdb; pdb.set_trace()

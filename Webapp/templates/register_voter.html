@@ -183,18 +183,48 @@
                                     <label for="EmailAddress">Email address</label>
                                     <input type="email" class="form-control" id="email" name ="email" placeholder="Email">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" >
                                     <label for="Age">Age</label>
                                     <input type="text" class="form-control" id="age" name ="age" placeholder="Age">
                                 </div>
-
                                 <div class="form-group">
+                                  <label >Sick / Disabled</label><br/>
+                                    <label class="btn btn-outline-dark ">
+                                      <input type="radio" name="sick" id="yes" autocomplete="off" value="Yes" > Yes
+                                    </label>
+                                    <label class="btn btn-dark" >
+                                      <input type="radio" name="sick" id="no" autocomplete="off" checked value="No"> No
+                                    </label>
+                                </div>
+                                
+                                <div class="form-group" onclick="check();">
                                     <label for="SelectGender">Gender</label>
                                     <select class="form-control" id="Gender" name="gender">
                                     <option>Male</option>
                                     <option>Female</option>
                                     </select>
                                 </div>
+                                <script type="text/javascript">
+                                  function check(){
+                                    
+                                    var sick=false;
+                                    if (document.getElementById('yes').checked)
+                                      sick=true;
+                                    var x=document.getElementById("age").value;
+                                    if (x >60 || sick==true)
+                                    {
+                                      resp=prompt("Do you wish to vote from home - Yes or No","No");
+                                      if(resp=="Yes")
+                                      {
+                                        document.getElementById("no").value="true"
+                                        
+                                      }
+                                      else{
+                                        document.getElementById("no").value="false"
+                                      }
+                                    }
+                                  }
+                                </script>
                                 <div class="form-group">
                                     <label for="PermanentAddress">Permanent Address</label>
                                     <textarea class="form-control" id="address" name="address" rows="4"></textarea>

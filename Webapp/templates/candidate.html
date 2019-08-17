@@ -4,7 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Voter Registration Form</title>
+        <title>Candidate Roll</title>
         <!-- plugins:css -->
         <link rel="stylesheet" href="../static/PurpleAdmin-Free-Admin-Template-master/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="../static/PurpleAdmin-Free-Admin-Template-master/vendors/css/vendor.bundle.base.css">
@@ -110,7 +110,7 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="../static/PurpleAdmin-Free-Admin-Template-master/images/abhiramImage.jpg" alt="profile">
+                  <img src="../static/images/dev.jpg" alt="profile">
                   <span class="login-status online"></span> <!--change to offline or busy as needed-->
                 </div>
                 
@@ -165,6 +165,28 @@
         </div>
       </div>
     {%- endmacro%}
+    {% macro render_modal_criminal(a,b,c) -%}
+    <div class="modal fade" id="exampleModalCriminal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Candidate Criminal Records</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                  <p>{{a}}</p>
+                  <p>{{b}}</p>
+                  <p>{{c}}</p>
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endmacro%}
    <div class="main-panel">
         <div class="content-wrapper" style = "background: linear-gradient(#ffacea2c,#ff95df80)">
           <div class="page-header">
@@ -183,6 +205,7 @@
                 <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Information List</h4>
+                  <p>Note: Criminal records are automatically retrieved from the internet; No responsibility will be held with regards to the accuracy of the information.</p>
                   <table class="table table-bordered">
                       <tr><th>UID</th><th>Full Name</th><th>Address</th><th>Ward</th><th>Age</th><th>Photo</th></tr>
                       {% for key in result %}
@@ -193,12 +216,18 @@
                                 <td> {{key['Address']}}</td>
                                 <td> {{mapping[key['Ward No']]}}</td>
                                 <td> {{key['Age']}}</td>
-                                <td><img src="../static/PurpleAdmin-Free-Admin-Template-master/images/{{key['UID']}}.jpg"></td>
+                                <td><img src="../static/images/{{key['UID']}}.jpg"></td>
                                 <td>
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong">Info
                                     </button>
                                     {{render_modal(key['a'],key['b'],key['c'])}}
-                                    {{key['a']}}
+{#                                    {{key['a']}}#}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCriminal">Criminal Records
+                                    </button>
+                                    {{render_modal_criminal(criminal[0],criminal[1],criminal[2])}}
+{#                                    {{key['a']}}#}
                                 </td>
                             </tr>
                       </div>
