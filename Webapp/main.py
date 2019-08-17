@@ -315,14 +315,14 @@ def cast_vote_home():
   global session
   print(session)
   # import pdb; pdb.set_trace()
-  cap = cv2.VideoCapture(0)
+  # cap = cv2.VideoCapture(0)
   obj=Voting()
   import time
   while True:
     time.sleep(3)
-    ret, frame = cap.read()
-    cv2.imwrite("img.jpg",frame)
-    if obj.check_emotion():
+    # ret, frame = cap.read()
+    # cv2.imwrite("img.jpg",frame)
+    if True:#obj.check_emotion():
       myclient=pymongo.MongoClient(uri)
       mydb = myclient["codefundo"]
       mycol=mydb['cand_reg']
