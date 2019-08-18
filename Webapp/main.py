@@ -103,7 +103,17 @@ def result_proof():
   for e in entries:
     x,y=e.split("\t\t")
     result.append({"Name":x,"Timestamp":y})
-  return flask.render_template("result_proof.html",result=result)
+  return flask.render_template("result_proof.html",result=result,data='Vote Casted To')
+@app.route("/result_proof_voter")
+def result_proof_voter():
+  fil=open("vote_tabulate_voter.txt","r").read()
+  # import pdb; pdb.set_trace()
+  entries=fil.split("\n")
+  result=[]
+  for e in entries:
+    x,y=e.split("        ")
+    result.append({"Name":x,"Timestamp":y})
+  return flask.render_template("result_proof.html",result=result,data='Vote Casted By')
 @app.route("/register_candidate")
 def register_candidate():
     return flask.render_template("register_candidate.html")
@@ -357,16 +367,17 @@ def voted():
     mydb = myclient["codefundo"]
     mycol=mydb['cand_reg']
     #########THE LINE THAT FAKES IT#####################
-    mycol.update_one({str(whom):"17"},{"$set":{str(whom):"38"}})
+    # mycol.update_one({str(whom):"17"},{"$set":{str(whom):"38"}})
     #######################################################
     dic=mycol.find_one({"UID":str(whom)},{str(whom):1,'_id':0})
     candidate_uid=dic[str(whom)]
     dic=mycol.find_one({"UID":str(whom)},{"First Name":1,"Last Name":1,'_id':0})
     # time=datetime.datetime.now()
     t=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    fil.writelines(str(dic["First Name"]+" "+dic['Last Name']+"\t\t"+t))
+    fil.writelines(str("\n"+dic["First Name"]+" "+dic['Last Name']+"\t\t"+t))
     # current_votes=mycol.find_one({"UID":whom})['vote_count']
     # mycol.find_one_and_update({"UID":whom},{'$inc':{"vote_count":1}})
+    import pdb; pdb.set_trace()
     apidata={"workflowFunctionID": 9,"workflowActionParameters": []}
     url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/contracts/"+str(candidate_uid)+"/actions"
     # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
