@@ -29,6 +29,23 @@ data = json.load(fd)
 
 @app.route("/results")
 def results():
+  name_map={
+    "1":"Abhiram N",
+    "2":"Dipayan S",
+    "3":"Dawood I",
+    "4":"Shobhit K",
+    "5":"N Modi",
+    "6":"R Gandhi",
+    "7":"A Kejriwal",
+    "8":"B Yediyurappa",
+    "9":"HD Kumaraswamy",
+    "10":"Siddaramaiah K",
+    "11":"S R Vijaykumar",
+    "12":"A Arunmozhithevan",
+    "13":"K Ashok Kumar",
+    "14":"TR Krishnan",
+    "15":"A P Nagarajan"
+  }
   ansstr={}
   votejson= getvotecount()
   for x in votejson['contracts']:
@@ -41,8 +58,8 @@ def results():
               # f=1
       # if f==1:
       #     ansstr = ansstr+temp
-  # return ansstr
-  return flask.render_template("results.html",result_map=ansstr)
+  return name_map
+  return flask.render_template("results.html",result_map=ansstr,name_map=name_map)
 @app.route("/")
 def home():
     obj=NewsSearch()
