@@ -378,7 +378,7 @@ def voted():
     fil.writelines(str("\n"+dic["First Name"]+" "+dic['Last Name']+"\t\t"+t))
     # current_votes=mycol.find_one({"UID":whom})['vote_count']
     # mycol.find_one_and_update({"UID":whom},{'$inc':{"vote_count":1}})
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     apidata={"workflowFunctionID": 9,"workflowActionParameters": []}
     url=abhiwaalaurl+"/api/v1/contracts/"+str(candidate_uid)+"/actions"
     # params={'workflowId':1,'contractCodeId':1,'connectionId':1}

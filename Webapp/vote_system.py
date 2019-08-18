@@ -30,10 +30,10 @@ class Voting:
         #make call to blockchain registercandidate function
     def validate(self,category):
         ###########################USE THIS ONLY IF YOU HAVE SUPPORT FOR IT ELSE BUZZ OFF#############################
-        # obj=Face_Detector()
-        # if obj.detect(os.path.join("D:\codefundo\Webapp\static\PurpleAdmin-Free-Admin-Template-master\images",self.photo))!=True:
-        #     return False
-        #pdb.set_trace()
+        obj=Face_Detector()
+        if obj.detect(os.path.join("D:\\codefundo\\Webapp\\static\\images",self.photo))!=True:
+            return False
+        # pdb.set_trace()
         if category=="candidate":
             if re.match(r'\b\d{12}\b',self.uid) and int(self.age)>=25 and self.address!="default" and self.fname!="default" and self.lname!="default" and self.photo!="pic.jpg" and self.ward!=10000:
                 return True
