@@ -205,9 +205,12 @@
                 <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Information List</h4>
-                  <p>Note: Criminal records are automatically retrieved from the internet; No responsibility will be held with regards to the accuracy of the information.</p>
+                  <p>Note: Criminal records are automatically retrieved from the internet; No responsibility will be held with regards to the accuracy of the information.<br/>
+                  The score rating provided is based on a number of factors that are automatically retrieved from <b>myneta.org</b> as well as <b>indiatoday.in</b>'s ranking of ministers in the Lok Sabha
+                  using automatic scaling and applying relevant weights.
+                  </p>
                   <table class="table table-bordered">
-                      <tr><th>UID</th><th>Full Name</th><th>Address</th><th>Ward</th><th>Age</th><th>Photo</th></tr>
+                      <tr><th>UID</th><th>Full Name</th><th>Address</th><th>Ward</th><th>Age</th><th>Score (/5.0)</th><th>Photo</th></tr>
                       {% for key in result %}
                       <div class="col-6">
                             <tr>
@@ -216,6 +219,7 @@
                                 <td> {{key['Address']}}</td>
                                 <td> {{mapping[key['Ward No']]}}</td>
                                 <td> {{key['Age']}}</td>
+                                <td>{{key['score']}}</td>
                                 <td><img src="../static/images/{{key['UID']}}.jpg"></td>
                                 <td>
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong">Info

@@ -29,7 +29,20 @@ data = json.load(fd)
 
 @app.route("/results")
 def results():
-  return flask.render_template("results.html")
+  ansstr={}
+  votejson= getvotecount()
+  for x in votejson['contracts']:
+      # f=0
+      temp =  'dude number :'+str(x['id'])+':'
+      for y in x['contractProperties']:
+          if y['workflowPropertyId']==14:
+              temp = temp + 'number of votes: '+str(y['value'])+'\n'
+              ansstr[str(x['id'])]=y['value']
+              # f=1
+      # if f==1:
+      #     ansstr = ansstr+temp
+  # return ansstr
+  return flask.render_template("results.html",result_map=ansstr)
 @app.route("/")
 def home():
     obj=NewsSearch()
@@ -339,7 +352,7 @@ def cast_vote_home():
       mycol=mydb['cand_reg']
       result=[]
       obj=NewsSearch()
-      for x in mycol.find():
+      for x in mycol.find({"Ward No":"003"}):
         result.append(x)
       news=[]
       # import pdb; pdb.set_trace()
