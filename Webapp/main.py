@@ -48,12 +48,12 @@ def home_1():
 @app.route("/list")
 def list_fun():
   mapping={
-    "001":"Bangalore",
-    "002":"Delhi",
-    "003":"Chennai",
-    "004": "Mumbai",
-    "005":"Kolkata",
-    "006":"Hyderabad"
+    "001":"Karnataka (KA)",
+    "002":"Delhi (DL)",
+    "003":"Tamil Nadu (TN)",
+    "004": "Maharashtra (MH)",
+    "005":"West Bengal (WB)",
+    "006":"Tenlangana & Andhra (AN)"
   }
   myclient=pymongo.MongoClient(uri)
   mydb = myclient["codefundo"]
@@ -66,12 +66,12 @@ def list_fun():
 @app.route("/candidates")
 def candidate_fun():
   mapping={
-    "001":"Bangalore",
-    "002":"Delhi",
-    "003":"Chennai",
-    "004": "Mumbai",
-    "005":"Kolkata",
-    "006":"Hyderabad"
+    "001":"Karnataka (KA)",
+    "002":"Delhi (DL)",
+    "003":"Tamil Nadu (TN)",
+    "004": "Maharashtra (MH)",
+    "005":"West Bengal (WB)",
+    "006":"Tenlangana & Andhra (AN)"
   }
   myclient=pymongo.MongoClient(uri)
   mydb = myclient["codefundo"]
@@ -241,12 +241,12 @@ def registration_complete_voter_overseas():
 @app.route("/cast_vote_overseas")
 def cast_vote_overseas():
   mapping={
-    "001":"Bangalore",
-    "002":"Delhi",
-    "003":"Chennai",
-    "004": "Mumbai",
-    "005":"Kolkata",
-    "006":"Hyderabad"
+    "001":"Karnataka (KA)",
+    "002":"Delhi (DL)",
+    "003":"Tamil Nadu (TN)",
+    "004": "Maharashtra (MH)",
+    "005":"West Bengal (WB)",
+    "006":"Tenlangana & Andhra (AN)"
   }
   global session
   print(session)
@@ -278,12 +278,12 @@ def cast_vote_overseas():
 @app.route("/cast_vote_oldage")
 def cast_vote_oldage():
   mapping={
-    "001":"Bangalore",
-    "002":"Delhi",
-    "003":"Chennai",
-    "004": "Mumbai",
-    "005":"Kolkata",
-    "006":"Hyderabad"
+    "001":"Karnataka (KA)",
+    "002":"Delhi (DL)",
+    "003":"Tamil Nadu (TN)",
+    "004": "Maharashtra (MH)",
+    "005":"West Bengal (WB)",
+    "006":"Tenlangana & Andhra (AN)"
   }
   global session
   print(session)
@@ -315,12 +315,12 @@ def cast_vote_oldage():
 @app.route("/cast_vote_home")
 def cast_vote_home():
   mapping={
-    "001":"Bangalore",
-    "002":"Delhi",
-    "003":"Chennai",
-    "004": "Mumbai",
-    "005":"Kolkata",
-    "006":"Hyderabad"
+    "001":"Karnataka (KA)",
+    "002":"Delhi (DL)",
+    "003":"Tamil Nadu (TN)",
+    "004": "Maharashtra (MH)",
+    "005":"West Bengal (WB)",
+    "006":"Tenlangana & Andhra (AN)"
   }
   global session
   print(session)
