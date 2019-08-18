@@ -14,7 +14,7 @@ import requests
 # app.secret_key = 'development'
 session={}
 applid=4
-abhiwaalaurl="https://voting-7ebuci.azurewebsites.net"
+abhiwaalaurl="https://voting-7ebuci-api.azurewebsites.net"
 candidateRoleId=7
 voteWorkflowPropertyId=7
 currentuserid=-1
