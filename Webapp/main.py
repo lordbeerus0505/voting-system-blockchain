@@ -368,7 +368,7 @@ def voted():
     # current_votes=mycol.find_one({"UID":whom})['vote_count']
     # mycol.find_one_and_update({"UID":whom},{'$inc':{"vote_count":1}})
     apidata={"workflowFunctionID": 9,"workflowActionParameters": []}
-    url="https://voting-7ebuci.azurewebsites.net/api/v1/contracts/"+str(candidate_uid)+"/actions"
+    url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/contracts/"+str(candidate_uid)+"/actions"
     # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
     headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}#{'Content-Type': 'application/json'
     # import pdb; pdb.set_trace()
@@ -377,7 +377,7 @@ def voted():
   
 
   # apidata={"workflowFunctionID": 9,"workflowActionParameters": []}
-  # url="https://voting-7ebuci.azurewebsites.net/api/v1/contracts/"+str(candidate_uid)+"/actions"
+  # url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/contracts/"+str(candidate_uid)+"/actions"
   # # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
   # headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}#{'Content-Type': 'application/json',
   
@@ -403,7 +403,7 @@ def voted():
 
 def getyourroleid():
   global currentuserid
-  url="https://voting-7ebuci.azurewebsites.net/api/v1/applications/"+str(applid)+"/roleAssignments"
+  url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/applications/"+str(applid)+"/roleAssignments"
   # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
   headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}#{'Content-Type': 'application/json',
   
@@ -427,7 +427,7 @@ def getyourroleid():
 
 def getusertype():
   global currentuserid
-  url="https://voting-7ebuci.azurewebsites.net/api/v1/users/me"
+  url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/users/me"
   # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
   headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}#{'Content-Type': 'application/json',
   responsefromapi = requests.get(url,headers=headers)
@@ -449,7 +449,7 @@ def getusertype():
   else:
       return 'failed at getting user type'
 def getvotecount():
-  url="https://voting-7ebuci.azurewebsites.net/api/v1/contracts?workflowId=4"
+  url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/contracts?workflowId=4"
   # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
   headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}#{'Content-Type': 'application/json',
   
@@ -507,7 +507,7 @@ def launchcandidate():
       ]
     }
   print(apidata)
-  url="https://voting-7ebuci.azurewebsites.net/api/v1/contracts?workflowId=4&contractCodeId=4&connectionId=1"
+  url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/contracts?workflowId=4&contractCodeId=4&connectionId=1"
   # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
   headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}#{'Content-Type': 'application/json',
   
@@ -534,7 +534,7 @@ def reguser():
       "emailAddress": request.form['emailid']
     }
   print(apidata)
-  url="https://voting-7ebuci.azurewebsites.net/api/v1/users"
+  url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/users"
   # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
   headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}#{'Content-Type': 'application/json',
   
@@ -550,7 +550,7 @@ def reguser():
           "applicationRoleId": 7 #role for candidate
         }
       print(apidata)
-      url="https://voting-7ebuci.azurewebsites.net/api/v1/applications/"+str(applid)+"/roleAssignments"
+      url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/applications/"+str(applid)+"/roleAssignments"
       # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
       headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}
 
@@ -601,7 +601,7 @@ def shobhit_voted():
   candidate_uid=dic[str(candidate_uid)]
 
   apidata={"workflowFunctionID": 9,"workflowActionParameters": []}
-  url="https://voting-7ebuci.azurewebsites.net/api/v1/contracts/"+str(candidate_uid)+"/actions"
+  url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/contracts/"+str(candidate_uid)+"/actions"
   # params={'workflowId':1,'contractCodeId':1,'connectionId':1}
   headers={'Authorization': 'Bearer {0}'.format(session['auth_token'])}#{'Content-Type': 'application/json',
   
@@ -625,7 +625,7 @@ def shobhit1():
 
   apidata={"workflowFunctionID": 1,"workflowActionParameters": [  { "name": "message", "value": "lalala", "workflowFunctionParameterId": 3 } ] }
   auth_token=data['id_token']
-  url="https://voting-7ebuci.azurewebsites.net/api/v1/contracts"
+  url="https://votemaadi-4bm4ew-api.azurewebsites.net/api/v1/contracts"
   params={'workflowId':1,'contractCodeId':1,'connectionId':1}
   headers={'Authorization': 'Bearer {0}'.format(auth_token)}#{'Content-Type': 'application/json',
   
@@ -645,12 +645,12 @@ def shobhit1():
 @app.route("/ext")
 def ext():    
   # print(data['id_token'])
-  return redirect("https://login.microsoftonline.com/kumarshobhit98outlook.onmicrosoft.com/oauth2/authorize?response_type=id_token%20code&client_id=a4b9110a-22b5-4e8e-be71-7df715e1261b&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fhome&state=c0756113-6172-47f2-8afc-666f315c15b1&client-request-id=0de0f9e0-a2f4-4853-9bd2-7326f1f409d1&x-client-SKU=Js&x-client-Ver=1.0.17&nonce=3f993c47-3042-4669-bdce-02024f6c802f&response_mode=form_post")
+  return redirect("https://login.microsoftonline.com/kumarshobhit98outlook.onmicrosoft.com/oauth2/authorize?response_type=id_token%20code&client_id=c80344c2-d7fc-41e1-adcc-dd33683a7f6b&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fregister_msft&state=c0756113-6172-47f2-8afc-666f315c15b1&client-request-id=0de0f9e0-a2f4-4853-9bd2-7326f1f409d1&x-client-SKU=Js&x-client-Ver=1.0.17&nonce=3f993c47-3042-4669-bdce-02024f6c802f&response_mode=form_post")  # return redirect("https://login.microsoftonline.com/kumarshobhit98outlook.onmicrosoft.com/oauth2/v2.0/authorize?client_id=c62087b9-cfed-4105-a9c2-4fd3953ceed5&response_type=id_token&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fshobhit&response_mode=fragment&scope=openid&state=12345&nonce=678910")
 
 @app.route("/redirect_home")
 def ext1():    
   # print(data['id_token'])
-  return redirect("https://login.microsoftonline.com/kumarshobhit98outlook.onmicrosoft.com/oauth2/authorize?response_type=id_token%20code&client_id=a4b9110a-22b5-4e8e-be71-7df715e1261b&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fhome&state=c0756113-6172-47f2-8afc-666f315c15b1&client-request-id=0de0f9e0-a2f4-4853-9bd2-7326f1f409d1&x-client-SKU=Js&x-client-Ver=1.0.17&nonce=3f993c47-3042-4669-bdce-02024f6c802f&response_mode=form_post")
+  return redirect("https://login.microsoftonline.com/kumarshobhit98outlook.onmicrosoft.com/oauth2/authorize?response_type=id_token%20code&client_id=c80344c2-d7fc-41e1-adcc-dd33683a7f6b&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fhome&state=c0756113-6172-47f2-8afc-666f315c15b1&client-request-id=0de0f9e0-a2f4-4853-9bd2-7326f1f409d1&x-client-SKU=Js&x-client-Ver=1.0.17&nonce=3f993c47-3042-4669-bdce-02024f6c802f&response_mode=form_post")
 
 
 if __name__ == "__main__":
