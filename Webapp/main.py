@@ -32,14 +32,7 @@ def results():
   name_map={
     "1":"Abhiram N",
     "2":"Dipayan S",
-    "3":"Dawood I",
     "4":"Shobhit K",
-    "5":"N Modi",
-    "6":"R Gandhi",
-    "7":"A Kejriwal",
-    "8":"B Yediyurappa",
-    "9":"HD Kumaraswamy",
-    "10":"Siddaramaiah K",
     "11":"S R Vijaykumar",
     "12":"A Arunmozhithevan",
     "13":"K Ashok Kumar",
@@ -56,10 +49,10 @@ def results():
               temp = temp + 'number of votes: '+str(y['value'])+'\n'
               ansstr[str(x['id'])]=y['value']
               # f=1
-      # if f==1:
-      #     ansstr = ansstr+temp
-  return name_map
-  return flask.render_template("results.html",result_map=ansstr,name_map=name_map)
+  import operator
+  sorted_x=sorted(ansstr.items(),key=operator.itemgetter(1))
+  sorted_x.reverse()
+  return flask.render_template("results.html",result_map=sorted_x,name_map=name_map)
 @app.route("/")
 def home():
     obj=NewsSearch()
@@ -120,7 +113,7 @@ def candidate_fun():
     # result.append({'News':obj.news_candidate(search_term=str(result["First Name"]+" "+result["Last Name"]+" election"))})
   return flask.render_template("candidate.html",result=result,mapping=mapping,criminal=criminal)
  
-@app.route("/admin_home")
+@app.route("/kjhgf123")
 def admin_home():
   obj=NewsSearch()
   result=obj.news()
@@ -694,6 +687,9 @@ def ext1():
   # print(data['id_token'])
   return redirect("https://login.microsoftonline.com/kumarshobhit98outlook.onmicrosoft.com/oauth2/authorize?response_type=id_token%20code&client_id=a4b9110a-22b5-4e8e-be71-7df715e1261b&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fhome&state=c0756113-6172-47f2-8afc-666f315c15b1&client-request-id=0de0f9e0-a2f4-4853-9bd2-7326f1f409d1&x-client-SKU=Js&x-client-Ver=1.0.17&nonce=3f993c47-3042-4669-bdce-02024f6c802f&response_mode=form_post")
 
-
+@app.route("/adminlogin")
+def adminlogin():
+  # import pdb; pdb.set_trace()
+  return redirect("https://login.microsoftonline.com/kumarshobhit98outlook.onmicrosoft.com/oauth2/authorize?response_type=id_token%20code&client_id=a4b9110a-22b5-4e8e-be71-7df715e1261b&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fkjhgf123&state=c0756113-6172-47f2-8afc-666f315c15b1&client-request-id=0de0f9e0-a2f4-4853-9bd2-7326f1f409d1&x-client-SKU=Js&x-client-Ver=1.0.17&nonce=3f993c47-3042-4669-bdce-02024f6c802f&response_mode=form_post")
 if __name__ == "__main__":
   app.run(debug=True)

@@ -1,57 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-        <div class="col-md-5 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Genderwise Voting Statistics</h4>
-                    <canvas id="traffic-chart"></canvas>
-                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Voter Registration Form</title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="../static/PurpleAdmin-Free-Admin-Template-master/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../static/PurpleAdmin-Free-Admin-Template-master/vendors/css/vendor.bundle.base.css">
+        <!-- endinject -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="../static/PurpleAdmin-Free-Admin-Template-master/css/style.css">
+        <!-- endinject -->
+        <link rel="shortcut icon" href="../static/PurpleAdmin-Free-Admin-Template-master/images/favicon.png" />
+            </head>
+   <body>
+     <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" >
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="../static/PurpleAdmin-Free-Admin-Template-master/hello.html"><img src="../static/images/commision.jpg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="../static/PurpleAdmin-Free-Admin-Template-master/index.html"><img src="../static/PurpleAdmin-Free-Admin-Template-master/images/logo-mini.svg" alt="logo"/></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+            
+          <ul class="navbar-nav navbar-nav-right">
+            <h1 class="mb-3" style="
+            background: -webkit-linear-gradient(rgb(255, 109, 25), rgb(241, 91, 31));
+            -webkit-background-clip: text;-webkit-text-fill-color: transparent; position:absolute; right:20%;padding-right:25%;"> R V VOTING?</h1>
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link">
+                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                <i class="mdi mdi-bell-outline"></i>
+                <span class="count-symbol bg-danger"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <h6 class="p-3 mb-0">Notifications</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-success">
+                      <i class="mdi mdi-calendar"></i>
+                    </div>
                   </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
+                    <p class="text-gray ellipsis mb-0">
+                      Just a reminder that you have an event today
+                    </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-warning">
+                      <i class="mdi mdi-settings"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
+                    <p class="text-gray ellipsis mb-0">
+                      Update dashboard
+                    </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-info">
+                      <i class="mdi mdi-link-variant"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
+                    <p class="text-gray ellipsis mb-0">
+                      New admin wow!
+                    </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <h6 class="p-3 mb-0 text-center">See all notifications</h6>
+              </div>
+            </li>
+            <li class="nav-item nav-logout d-none d-lg-block">
+              <a class="nav-link" href="#">
+                <i class="mdi mdi-power"></i>
+              </a>
+            </li>
+            <li class="nav-item nav-settings d-none d-lg-block">
+              <a class="nav-link" href="#">
+                <i class="mdi mdi-format-line-spacing"></i>
+              </a>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background: linear-gradient(#96c3ff2f,rgba(100, 180, 255, 0.603))">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                  <img src="../static/PurpleAdmin-Free-Admin-Template-master/images/faces-clipart/pic-1.png" alt="profile">
+                  <span class="login-status online"></span> <!--change to offline or busy as needed-->
+                </div>
+                
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../static/PurpleAdmin-Free-Admin-Template-master/home.html">
+                <span class="menu-title">Home</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../static/PurpleAdmin-Free-Admin-Template-master/home.html">
+                  <span class="menu-title">Register Candidate</span>
+                  <i class="mdi mdi-login menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="../static/PurpleAdmin-Free-Admin-Template-master/home.html">
+                    <span class="menu-title">Register Voter</span>
+                    <i class="mdi mdi-login menu-icon"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../static/PurpleAdmin-Free-Admin-Template-master/home.html">
+                      <span class="menu-title">Register Voter Overseas</span>
+                      <i class="mdi mdi-login menu-icon"></i>
+                    </a>
+                  </li>
+          </ul>
+        </nav>
+
+   <div class="main-panel">
+        <div class="content-wrapper"  style = "background: linear-gradient(#ffacea2c,#ff95df80)">
+          <div class="page-header">
+            <h3 class="page-title">
+              Registration Confirmation
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <!-- <li class="breadcrumb-item active" aria-current="page">Basic tables</li> -->
+              </ol>
+            </nav>
+          </div>
+          <div class="row">
+            <div class="col-5 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Results</h4>
+                        <table class="table table-bordered">
+                            {% for key,value in result_map %}
+                              {% if key in name_map %}
+                                <tr>
+                                  <td>{{name_map[key]}}</td> 
+                                  <td>{{value}}</td>
+                                </tr>
+                              {% endif %}
+                              
+                            {% endfor %}
+                          </table>
+                        
+                    </div>
+                  </div>
+            </div>
+            <div class="col-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Pie Chart of the results</h4>
+                        <canvas id="doughnutChart"></canvas>
+                            <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
                 </div>
               </div>
-<div class="container">
-  <h2>Modal Example</h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
         </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
     </div>
-  </div>
-  
-</div>
-<script src="../static/PurpleAdmin-Free-Admin-Template-master/vendors/js/vendor.bundle.base.js"></script>
-  <script src="../static/PurpleAdmin-Free-Admin-Template-master/vendors/js/vendor.bundle.addons.js"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/off-canvas.js"></script>
-  <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/misc.js"></script>
-   <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/dashboard.js"></script>
-  <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/chart.js"></script>
-</body>
+       <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap Dash</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+          </div>
+        </footer>
+        </div>
+        </div>
+     </div>
+{#          <table border = 1>#}
+{#         {% for key, value in result.items() %}#}
+{#            <tr>#}
+{#               <th> {{ key }} </th>#}
+{#               <td> {{ value }} </td>#}
+{#            </tr>#}
+{#         {% endfor %}#}
+{#      </table>#}
+
+        <script src="../static/PurpleAdmin-Free-Admin-Template-master/vendors/js/vendor.bundle.base.js"></script>
+        <script src="../static/PurpleAdmin-Free-Admin-Template-master/vendors/js/vendor.bundle.addons.js"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page-->
+        <!-- End plugin js for this page-->
+        <!-- inject:js -->
+        <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/off-canvas.js"></script>
+        <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/misc.js"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/dashboard.js"></script>
+        <script src="../static/PurpleAdmin-Free-Admin-Template-master/js/file-upload.js"></script>
+        <script>
+          $(function() {
+              'use strict';
+        var doughnutPieData = {
+          datasets: [{
+            data: [0,1,0,0,0,1,0,0],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.5)',
+              'rgba(54, 162, 235, 0.5)',
+              'rgba(255, 206, 86, 0.5)',
+              'rgba(75, 192, 192, 0.5)',
+              'rgba(153, 102, 255, 0.5)',
+              'rgba(255, 159, 64, 0.5)',
+              'rgba(255, 99, 132, 0.5)',
+              'rgba(59, 255, 200, 0.5)',
+      
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)',
+              'rgba(255,99,132,1)',
+              'rgba(59, 255, 200, 1)',
+      
+            ],
+          }],
+      
+          // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+            'Abhiram N',
+            'S R Vijaykumar',
+            'A Arunmozhithevan',
+            'K Ashok Kumar',
+            'TR Krishnan',
+            'A P Nagarajan',
+            'Dipayan S',
+            'Shobhit K',
+          ]
+        };
+        var doughnutPieOptions = {
+          responsive: true,
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          }
+        };
+        var data = {
+          labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
+          datasets: [{
+            label: '# of Votes',
+            data: [10, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
+            fill: false
+          }]
+        };
+      if ($("#doughnutChart").length) {
+          var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
+          var doughnutChart = new Chart(doughnutChartCanvas, {
+            type: 'doughnut',
+            data: doughnutPieData,
+            options: doughnutPieOptions
+          });
+        }
+        if ($("#barChart-vote").length) {
+          var barChartCanvas = $("#barChart-vote").get(0).getContext("2d");
+          // This will get the first returned node in the jQuery collection.
+          var barChart = new Chart(barChartCanvas, {
+            type: 'bar',
+            data: data,
+            options: options
+          });
+        }
+        });
+      </script>
+   </body>
 </html>

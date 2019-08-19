@@ -47,8 +47,8 @@ class NewsSearch:
             print("News result count: {}".format(len(news_result.value)).encode("utf-8"))
             result=['No more news...','No more news...','No more news...']
             for first_news_result in news_result.value:        
-                if len(first_news_result.name)>120:
-                    a=first_news_result.name[:120]+"..."
+                if len(first_news_result.name)>100:
+                    a=first_news_result.name[:100]+"..."
                 else:
                     a=first_news_result.name
                 # subresult.append("{}".format(first_news_result.name))
