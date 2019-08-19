@@ -258,8 +258,8 @@ def registration_complete_voter_overseas():
       if obj.register_voter_overseas(result['uid'],result['fname'],result['lname'],result['age'],
           result['address'],result['gender'],result['wardno'],str(fh.filename),str(result['uid']+"_visa.jpg")) ==True:
             return flask.render_template("registration_complete.html",result=result,mapping=mapping,photo="../static/images/"+str(result['uid']+".jpg"),visa="../static/images/"+str(result['uid'])+"_visa.jpg",candidate=None)
-    else:
-        return flask.render_template("permission_denied_overseas.html")
+      else:
+          return flask.render_template("permission_denied_overseas.html")
 
         
 @app.route("/cast_vote_overseas")
@@ -354,9 +354,9 @@ def cast_vote_home():
   import time
   while True:
     time.sleep(3)
-    # ret, frame = cap.read()
-    # cv2.imwrite("img.jpg",frame)
-    if True:#obj.check_emotion():
+    ret, frame = cap.read()
+    cv2.imwrite("img.jpg",frame)
+    if obj.check_emotion():
       myclient=pymongo.MongoClient(uri)
       mydb = myclient["codefundo"]
       mycol=mydb['cand_reg']

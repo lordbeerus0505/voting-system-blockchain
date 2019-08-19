@@ -77,6 +77,9 @@ class OCR:
                 j=i[:2]+str(value)+i[-2:]
                 # import pdb; pdb.set_trace()
                 print(j)
-                return True #faking it
-                if j[-2:]>=today[-2:] or (j[-2:]==today[-2:] and j[2:4]>today[2:4]):
+                
+                if j[-2:]>today[-2:] or (j[-2:]==today[-2:] and j[2:4]>today[2:4]):
+                    print("TRUEEE")
                     return( True)
+# obj=OCR()
+# obj.recognise("D:\\codefundo\\Webapp\\static\\images\\visanewrevised.jpg")
