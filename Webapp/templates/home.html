@@ -287,15 +287,15 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-5 grid-margin stretch-card">
+        <div class="col-3 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Results</h4>
-                        <canvas id="doughnutChart"></canvas>
-                            <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                    <h4 class="card-title">Chatbot Service</h4>
+                    <img src="..\static\images\chat.jpg" alt="Chatbot image" width="250px;">
+                        <textarea placeholder="Enter your question" onblur="returnAns()" id="question" rows="5" cols="30"></textarea>
                 </div>
               </div>
-        </div> -->
+        </div>
     </div>
 
     <footer class="footer" style="background: lavenderblush">
@@ -337,6 +337,11 @@ function myFunction() {
   }
 }
 
+</script>
+<script type="text/javascript">
+  function returnAns(){
+    document.getElementById("question").value='You are not in the specified time frame of 7AM to 6PM on the 20th of August. Hence you cannot vote. Please try again later.'
+  }
 </script>
 <script type="text/javascript">
     var x = document.getElementById("demo");
