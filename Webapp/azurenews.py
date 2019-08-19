@@ -45,7 +45,7 @@ class NewsSearch:
             print("Total estimated matches value: {}".format(
                     news_result.total_estimated_matches))
             print("News result count: {}".format(len(news_result.value)).encode("utf-8"))
-            result=['No more news...','No more news...','No more news...']
+            result=[]
             for first_news_result in news_result.value:        
                 if len(first_news_result.name)>100:
                     a=first_news_result.name[:100]+"..."
@@ -60,6 +60,10 @@ class NewsSearch:
                 # print("News provider: {}".format(first_news_result.provider[0].name).encode("utf-8"))
                 # print('\n\n\n\n')
             # import pdb; pdb.set_trace()
+            if len(result)<3:
+                while len(result)<3:
+                    result.append("No more news...")
+                # result=['No more news...','No more news...','No more news...']
             return result[0],result[1],result[2]
         else:
             print("Didn't see any news result data..")

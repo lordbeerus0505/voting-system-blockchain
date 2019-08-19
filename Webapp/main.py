@@ -349,7 +349,7 @@ def cast_vote_home():
   global session
   print(session)
   # import pdb; pdb.set_trace()
-  # cap = cv2.VideoCapture(0)
+  cap = cv2.VideoCapture(0)
   obj=Voting()
   import time
   while True:
